@@ -20,4 +20,4 @@ Host someinternalhost
 
 VPN
 bastion_IP = 35.211.107.104
-someinternalhost_IP = 10.142.0.3:22
+someinternalhost_IP = 10.142.0.3
