@@ -1,7 +1,7 @@
 # gryaznovart186_infra
 gryaznovart186 Infra repository
 
-
+# ДЗ
 35.211.107.104 - Внешний ip для bastion
 10.142.0.3:22 - Внутрений ip для someinternalhost
 username - уз для которой созданы ssh ключи
@@ -17,3 +17,7 @@ Host bastion
 Host someinternalhost
     ProxyCommand ssh -A bastion -W 10.142.0.3:22
     User username
+
+VPN
+bastion_IP = 35.211.107.104
+someinternalhost_IP = 10.142.0.3:22
