@@ -23,5 +23,10 @@ Host someinternalhost
 ```
 ##### Для подключения  к VPN
 
-bastion_IP = 35.211.107.104  
-someinternalhost_IP = 10.142.0.3  
+bastion_IP = 35.211.107.104
+someinternalhost_IP = 10.142.0.3
+
+## ДЗ №6 Знакомство с облачнойинфраструктурой. GoogleCloud Platform
+
+testapp_IP = 35.243.159.81
+testapp_port = 9292
