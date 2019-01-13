@@ -8,7 +8,9 @@
         "ssh_un": "",
         "vm_type": "",
         "d_type":"",
-        "tags":""
+        "network":"",
+        "tags":"",
+        "disk_size": ""
       },
 
     "builders": [
@@ -22,8 +24,9 @@
             "zone": "{{user `vm_zone`}}",
             "ssh_username": "{{user `ssh_un`}}",
             "machine_type": "{{user `vm_type`}}",
-            "disk_size": 30,
+            "disk_size": "{{user `disk_size`}}",
             "disk_type":"{{user `d_type`}}",
+            "network":"{{user `network`}}",
             "tags": "{{user `tags`}}"
         }
     ],
