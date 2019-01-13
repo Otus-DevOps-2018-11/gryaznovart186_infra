@@ -1,0 +1,11 @@
+{
+    "pjct_id": "this_is_id_gcp",
+    "ima_name": "this_is_name_image",
+    "im_family": "this_is_name_image_fammily",
+    "src_im_family": "this_is_source_image",
+    "vm_zone": "this_is_zone_create_vm",
+    "ssh_un": "this_is_user_for_ssh",
+    "vm_type": "this_is_type_vm"
+    "d_type":"this_is_disk_type",
+    "tags":"this_is_tags_for_firewall"
+  }

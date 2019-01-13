@@ -1,14 +1,30 @@
 {
+    "variables": {
+        "pjct_id": "",
+        "ima_name": "",
+        "im_family": "",
+        "src_im_family": "",
+        "vm_zone": "",
+        "ssh_un": "",
+        "vm_type": "",
+        "d_type":"",
+        "tags":""
+      },
+
     "builders": [
         {
             "type": "googlecompute",
-            "project_id": "devopslearn",
-            "image_name": "reddit-base-{{timestamp}}",
-            "image_family": "reddit-base",
-            "source_image_family": "ubuntu-1604-lts",
-            "zone": "us-east1-b",
-            "ssh_username": "gryaznovart186",
-            "machine_type": "f1-micro"
+            "project_id": "{{user `pjct_id`}}",
+            "image_description":"image created with packer",
+            "image_name": "{{user `ima_name`}}-{{timestamp}}",
+            "image_family": "{{user `im_family`}}",
+            "source_image_family": "{{user `src_im_family`}}",
+            "zone": "{{user `vm_zone`}}",
+            "ssh_username": "{{user `ssh_un`}}",
+            "machine_type": "{{user `vm_type`}}",
+            "disk_size": 30,
+            "disk_type":"{{user `d_type`}}",
+            "tags": "{{user `tags`}}"
         }
     ],
     "provisioners": [
