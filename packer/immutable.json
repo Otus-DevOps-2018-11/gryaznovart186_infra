@@ -1,0 +1,40 @@
+{
+    "variables": {
+        "pjct_id": "",
+        "ima_name": "",
+        "im_family": "",
+        "src_im_family": "",
+        "vm_zone": "",
+        "ssh_un": "",
+        "vm_type": "",
+        "d_type":"",
+        "network":"",
+        "tags":"",
+        "disk_size": ""
+      },
+
+    "builders": [
+        {
+            "type": "googlecompute",
+            "project_id": "{{user `pjct_id`}}",
+            "image_description":"image created with packer",
+            "image_name": "{{user `ima_name`}}-{{timestamp}}",
+            "image_family": "{{user `im_family`}}",
+            "source_image_family": "{{user `src_im_family`}}",
+            "zone": "{{user `vm_zone`}}",
+            "ssh_username": "{{user `ssh_un`}}",
+            "machine_type": "{{user `vm_type`}}",
+            "disk_size": "{{user `disk_size`}}",
+            "disk_type":"{{user `d_type`}}",
+            "network":"{{user `network`}}",
+            "tags": "{{user `tags`}}"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "scripts/full_install.sh",
+            "execute_command": "sudo {{.Path}}"
+        }
+    ]
+}

@@ -52,3 +52,20 @@ gcloud compute instances create reddit-app \
 --direction=in \
 --target-tags=puma-server
  ```
+
+## ДЗ №7 Модели управления инфраструктурой.
+
+Проверка template packer validate -var-file variables.json immutable.json
+Создание образа template packer validate -var-file variables.json immutable.json
+В файле variables.json.example пример заполнения variables.json(перед выполнением команд выше необходимо заполнить его и переименовать)
+Для создания VM из полученых образов можно использовать команду для gcloud:
+```
+gcloud compute instances create reddit-app \
+--image-family ubuntu-1604-lts \
+--image-project=devopslearn \
+--machine-type=g1-small \
+--tags puma-server \
+--restart-on-failure \
+--metadata-from-file startup-script=./config-scripts/deploy_script.sh - Если базовый image и необходимо опубликовать redis(если image full нужно удалить)
+```
+Либо скрипт create-redditvm.sh

@@ -1,0 +1,13 @@
+{
+  "pjct_id": "id-project",
+  "ima_name": "reddit-base",
+  "im_family": "reddit-base",
+  "src_im_family": "ubuntu-1604-lts",
+  "vm_zone": "us-east1-b",
+  "ssh_un": "sshuser",
+  "vm_type": "f1-micro",
+  "d_type":"pd-standard",
+  "network":"default",
+  "tags":"tags-firewall",
+  "disk_size": "30"
+}
