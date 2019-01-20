@@ -3,8 +3,14 @@ provider "google" {
   region  = "${var.region}"
 }
 
+resource "google_compute_project_metadata_item" "ssh" {
+  key   = "ssh-keys"
+  value = "gryaznovart186:${file("${var.public_key_path}")}\nappuser1:${file("${var.public_key_path}")}"
+}
+
 resource "google_compute_instance" "app" {
-  name         = "reddit-app"
+  count = "${var.count_vm}"
+  name         = "reddit-app-${count.index}"
   machine_type = "g1-small"
   zone         = "${var.zone}"
 
@@ -12,10 +18,6 @@ resource "google_compute_instance" "app" {
     initialize_params {
       image = "${var.disk_image}"
     }
-  }
-
-  metadata {
-    ssh-keys = "gryaznovart186:${file("${var.public_key_path}")}"
   }
 
   tags = ["reddit-app"]
