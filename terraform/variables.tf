@@ -23,7 +23,8 @@ variable disk_image {
 variable "private_key_path" {
   description = "Path to the pivate key used for ssh access"
 }
+
 variable "count_vm" {
-  default = 1
+  default     = 1
   description = "kol-vo vm"
 }

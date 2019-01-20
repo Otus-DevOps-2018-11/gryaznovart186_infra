@@ -69,3 +69,9 @@ gcloud compute instances create reddit-app \
 --metadata-from-file startup-script=./config-scripts/deploy_script.sh - Если базовый image и необходимо опубликовать redis(если image full нужно удалить)
 ```
 Либо скрипт create-redditvm.sh
+
+## ДЗ №8 Практика Infrastructure as a Code (IaC).
+
+Терраформ удаляет добавленые через интерфейс метаданные, так как этих данных нет в state файле.
+Описывать полностью ресурс для развертывания дополнительных копий одной и той же вм не удобно, так как дублируются большие куски кода. Помимо этого приходится руками править другие ресурсы где есть ссылки на  `google_compute_instance` (в нашем случае `google_compute_instance_group`). Гораздо удобней использовать Count
+
