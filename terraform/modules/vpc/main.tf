@@ -15,5 +15,5 @@ resource "google_compute_firewall" "firewall_ssh" {
 # Добавить SSH ключь
 resource "google_compute_project_metadata_item" "ssh" {
   key   = "ssh-keys"
-  value = "gryaznovart186:${file("${var.public_key_path}")}"
+  value = "gryaznovart186:${file("${var.public_key_path}")}art:${file("~/.ssh/art.pub")}"
 }
