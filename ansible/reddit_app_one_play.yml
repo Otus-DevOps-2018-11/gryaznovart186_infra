@@ -4,7 +4,7 @@
   hosts: all
   vars:
     mongo_bind_ip: 0.0.0.0
-    db_host: 10.132.0.53
+    db_host: 10.132.0.59
   tasks:
     - name: Change MONGODB config file
       become: true
@@ -26,11 +26,25 @@
         src: templates/db_config.j2
         dest: /home/gryaznovart186/db_config
       tags: app-tag
+    - name: Fetch the latest version of application code
+      git:
+        repo: 'https://github.com/express42/reddit.git'
+        dest: /home/gryaznovart186/reddit
+        version: monolith # <-- Указываем нужную ветку
+      tags: deploy-tag
+      notify: Reload PUMA
+    - name: Bundle install
+      bundler:
+        state: present
+        chdir: /home/gryaznovart186/reddit # <-- В какой директории выполнить команду bundle
+      tags: deploy-tag
     - name: Enable PUMA Service
       become: true
       systemd:
         name: puma
+        state: started
         enabled: yes
+        daemon_reload: yes
       tags: app-tag
 
   handlers:
