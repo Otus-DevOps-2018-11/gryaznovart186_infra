@@ -1,0 +1,14 @@
+- name: Install ruby
+  gather_facts: no
+  become: true
+  hosts: all
+  tasks:
+    - name: Install ruby packages
+      apt:
+        name: "{{ item }}"
+        state: latest
+        update_cache: yes
+      loop:
+        - ruby-full
+        - ruby-bundler
+        - build-essential
