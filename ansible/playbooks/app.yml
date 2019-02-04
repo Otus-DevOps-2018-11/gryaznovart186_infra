@@ -3,7 +3,6 @@
   gather_facts: no
   become: true
   hosts: app
-  vars:
-    db_host: 10.132.15.193
+
   roles:
    - app
