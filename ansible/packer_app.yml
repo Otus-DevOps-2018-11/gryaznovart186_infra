@@ -1,3 +1,4 @@
+---
 - name: Install ruby
   gather_facts: no
   become: true

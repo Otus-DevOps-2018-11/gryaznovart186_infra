@@ -1,3 +1,4 @@
+---
 - name: Configure Reddit
   gather_facts: no
   become: true

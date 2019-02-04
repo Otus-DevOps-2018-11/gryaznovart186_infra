@@ -1,3 +1,4 @@
+---
 - name: Install mongodb
   gather_facts: no
   become: true
