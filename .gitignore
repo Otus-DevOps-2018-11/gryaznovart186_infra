@@ -1,4 +1,4 @@
-.vscode/settings.json
+*.vscode
 pin
 firewall_help.txt
 create_vm_help.txt
@@ -8,3 +8,4 @@ packer/variables.json
 *.tfstate.backup
 *.tfvars
 .terraform/
+*.retry

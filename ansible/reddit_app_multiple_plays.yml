@@ -1,0 +1,70 @@
+- name: Configure MongoDB
+  gather_facts: no
+  become: true
+  hosts: db
+  tags: db-tag
+  vars:
+    mongo_bind_ip: 0.0.0.0
+  tasks:
+    - name: Change MONGODB config file
+      template:
+        src: templates/mongod.conf.j2
+        dest: /etc/mongod.conf
+        mode: 0644
+      notify: Restart MONGODB
+  handlers:
+    - name: Restart MONGODB
+      service:
+        name: mongod
+        state: restarted
+
+- name: Configure Reddit
+  gather_facts: no
+  become: true
+  hosts: app
+  tags: app-tag
+  vars:
+    db_host: 10.132.0.63
+  tasks:
+    - name: Add unit file for PUMA
+      copy:
+        src: files/puma.service
+        dest: /etc/systemd/system/puma.service
+      notify: Reload PUMA
+    - name: Add config for DB connection
+      template:
+        src: templates/db_config.j2
+        dest: /home/gryaznovart186/reddit/db_config
+        owner: gryaznovart186
+        group: gryaznovart186
+    - name: Enable PUMA Service
+      systemd:
+        name: puma
+        enabled: yes
+        daemon_reload: yes
+  handlers:
+    - name: Reload PUMA
+      systemd:
+        name: puma
+        state: restarted
+- name: Deploy Reddit
+  gather_facts: no
+  become: true
+  hosts: app
+  tags: deploy-tag
+  tasks:
+    - name: Fetch the latest version of application code
+      git:
+        repo: 'https://github.com/express42/reddit.git'
+        dest: /home/gryaznovart186/reddit
+        version: monolith
+      notify: Reload PUMA
+    - name: Bundle install
+      bundler:
+        state: present
+        chdir: /home/gryaznovart186/reddit
+  handlers:
+    - name: Reload PUMA
+      systemd:
+        name: puma
+        state: restarted
