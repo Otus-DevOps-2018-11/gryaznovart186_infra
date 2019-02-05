@@ -10,3 +10,4 @@ packer/variables.json
 .terraform/
 *.retry
 ansible/roles/jdauphant.nginx*
+ansible/vault.key
