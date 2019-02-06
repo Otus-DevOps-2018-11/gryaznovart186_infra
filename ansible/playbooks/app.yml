@@ -1,0 +1,9 @@
+---
+- name: Configure Reddit
+  gather_facts: no
+  become: true
+  hosts: app
+
+  roles:
+   - app
+   - jdauphant.nginx
