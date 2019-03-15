@@ -14,7 +14,7 @@
 - name: Install mongodb
   apt:
     name: mongodb-org
-    state: latest
+    state: persent
     update_cache: yes
   tags: install
 - name: start&enable mongodb
