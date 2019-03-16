@@ -7,13 +7,13 @@
     - name: Fetch the latest version of application code
       git:
         repo: 'https://github.com/express42/reddit.git'
-        dest: /home/gryaznovart186/reddit
+        dest: "/home/{{ deploy_user }}/reddit"
         version: monolith
       notify: Reload PUMA
     - name: Bundle install
       bundler:
         state: present
-        chdir: /home/gryaznovart186/reddit
+        chdir: "/home/{{ deploy_user }}/reddit"
   handlers:
     - name: Reload PUMA
       systemd:
